@@ -1,101 +1,145 @@
+
 # Intelligent Battery Management System
 
-An STM32-based Battery Management System developed across the **Battery Management Systems (BMS)** and **Embedded Systems with ARM** courses.
-
-> **Project status:** Replace the placeholders in this repository with the final, verified implementation and test results. Features that are planned or simulated must be labelled accordingly.
+### Battery Intelligence for Predictive Health, Safety, and Lifecycle Optimization
 
 ## Overview
 
-The project explores battery parameter monitoring and control using an STM32F401RE (ARM Cortex-M4) as the main controller, with an ESP32 providing wireless connectivity and cloud visualization.
+The Intelligent Battery Management System (BMS) is an embedded systems project designed to monitor battery operating conditions, identify abnormal behaviour, and improve battery safety and reliability.
 
-The STM32 firmware is intended to demonstrate low-level embedded programming and peripheral interfacing. The ESP32 handles the IoT communication path.
+The system uses an **STM32F401RE microcontroller** as its primary controller for sensor interfacing, data acquisition, monitoring, and protection functions. An **ESP32** handles wireless communication and sends battery-related data to the ThingSpeak IoT platform.
 
-## System architecture
+The project focuses on bare-metal embedded programming, STM32 peripheral configuration, sensor interfacing, UART communication, and IoT integration.
 
-```text
-Cell-voltage inputs ─┐
-Current sensor ──────┼──> STM32F401RE ── UART ──> ESP32 ── Wi-Fi ──> ThingSpeak
-Temperature inputs ──┘       │
-                             ├── Fan / actuator control
-                             └── Fault indication
-```
+## Key Features
 
-Confirm this diagram against the final hardware before submission.
-
-## Main functions
-
-- Cell-voltage monitoring
-- Battery-current measurement
+- Individual cell voltage monitoring
+- Battery current monitoring
 - Temperature monitoring
-- Fault indication and protection logic
-- Fan control based on the implemented temperature threshold
-- STM32-to-ESP32 UART communication
-- Cloud visualization through ThingSpeak
+- Fault detection and indication
+- Temperature-based cooling fan control
+- Buzzer-based fault alerts
+- OLED-based local monitoring
+- UART communication between STM32 and ESP32
+- ThingSpeak-based remote monitoring
 
-Only describe a function as implemented after verifying it in the final code and hardware tests. Clearly identify simulated sensor inputs.
+## System Architecture
 
-## Hardware
+The system is divided into two main sections:
 
-Update this list to match the final build:
+### 1. STM32F401RE – Battery Monitoring and Control
 
-- STM32F401RE Nucleo board
-- ESP32 development board
-- ACS712 current sensor
-- Two cell-voltage sensor inputs
-- Potentiometer input used to simulate a third cell voltage (if retained)
-- LM35 temperature sensor(s)
-- Potentiometer-based temperature simulation (if retained)
-- MOSFET switching stage, fan and buzzer (as applicable)
+The STM32 acts as the main controller. It performs:
+- ADC-based sensor data acquisition
+- Cell voltage monitoring
+- Current and temperature monitoring
+- Fault detection
+- Cooling fan control
+- Buzzer control
+- OLED display updates
+- UART data transmission
 
-## Software and tools
+### 2. ESP32 – IoT Communication
+
+The ESP32 receives battery telemetry from the STM32 through UART and uploads the data to ThingSpeak using Wi-Fi.
+
+## Hardware Components
+
+| Component | Function |
+|---|---|
+| STM32F401RE Nucleo | Main BMS controller |
+| ESP32 | Wireless communication |
+| Voltage sensors | Cell voltage measurement |
+| ACS712 | Current measurement |
+| LM35 | Temperature measurement |
+| Potentiometer | Simulated sensor input |
+| OLED Display | Local monitoring |
+| Cooling Fan | Temperature-based cooling |
+| Buzzer | Fault indication |
+
+Refer to the `hardware/` directory for component details and pin configurations.
+
+## Software and Technologies
 
 - Embedded C
-- STM32CubeIDE / GNU Arm toolchain (confirm exact toolchain)
-- CMSIS device definitions (if used by the firmware)
-- ESP32 development environment (specify Arduino core or ESP-IDF)
-- ThingSpeak
+- STM32F401RE
+- Bare-metal register-level programming
+- ESP32 Arduino Framework
+- ADC
+- UART
+- I2C
+- Wi-Fi communication
+- ThingSpeak IoT Platform
 
-## Repository structure
+## Working Principle
+
+1. Sensors provide battery-related measurements to the STM32.
+2. The STM32 reads analog inputs using its ADC peripheral.
+3. The controller processes the readings and checks for abnormal conditions.
+4. Protection and indication outputs are activated when required.
+5. Battery information is displayed on the OLED.
+6. The STM32 transmits telemetry to the ESP32 through UART.
+7. The ESP32 uploads the received data to ThingSpeak over Wi-Fi.
+
+## Repository Structure
 
 ```text
-firmware/
-  stm32_bms/       STM32 firmware and project files
-  esp32_iot/       ESP32 communication and cloud code
-hardware/          Pin map, wiring and component information
-docs/              Architecture and implementation notes
-results/           Verified test evidence and photographs
+Intelligent-battery-management-system/
+│
+├── docs/
+│   ├── architecture.md
+│   └── project-overview.md
+│
+├── firmware/
+│   ├── stm32_bms/
+│   │   ├── main.c
+│   │   └── README.md
+│   │
+│   └── esp32_iot/
+│       ├── main.cpp
+│       ├── secrets.example.h
+│       └── README.md
+│
+├── hardware/
+│   ├── components.md
+│   ├── connections.md
+│   └── pin-configuration.md
+│
+├── results/
+│   └── README.md
+│
+└── README.md
 ```
 
-## Build and flash
+## Project Objectives
 
-Build and flash instructions are intentionally left as a checklist until the exact project files and toolchain configuration are added.
+- Develop an embedded battery monitoring system.
+- Configure STM32 peripherals using register-level programming.
+- Monitor individual cell voltages and battery operating parameters.
+- Implement fault detection and basic protection mechanisms.
+- Establish communication between STM32 and ESP32.
+- Enable remote battery monitoring using an IoT platform.
 
-1. Install the required STM32 toolchain and board support.
-2. Open the STM32 project from `firmware/stm32_bms/`.
-3. Check the board, clock configuration, pin mapping and sensor scaling.
-4. Build the project and resolve any warnings or errors.
-5. Flash the Nucleo board and verify serial/debug output.
-6. Configure the ESP32 credentials locally and flash its firmware.
-7. Verify UART communication and cloud updates.
+## Future Improvements
 
-Do not commit Wi-Fi passwords, API keys or access tokens.
+- State of Charge (SOC) estimation
+- State of Health (SOH) estimation
+- Predictive cell imbalance detection
+- Remaining Useful Life (RUL) prediction
+- Advanced cell balancing techniques
+- Battery degradation analysis
 
-## Documentation
+## Applications
 
-- [Project overview](docs/project-overview.md)
-- [Hardware and components](hardware/components.md)
-- [Pin configuration](hardware/pin-configuration.md)
-- [Connections and safety](hardware/connections.md)
-- [Testing and results](results/README.md)
+- Electric vehicles
+- Battery energy storage systems
+- Portable battery-powered systems
+- Renewable energy storage
 
-## Limitations and future work
+## Project Status
 
-Document limitations honestly. Possible future work may include improved state-of-charge estimation, state-of-health estimation, predictive imbalance detection and more advanced balancing. These are not claimed as implemented unless supported by the final firmware and test evidence.
+Embedded monitoring, protection, and IoT integration are the primary development areas. Features under development or proposed for future work will be documented separately from verified implementation results.
 
 ## Team
 
-Add team members, roles and course details here.
-
-## License
-
-See [LICENSE](LICENSE).
+Developed as part of the Battery Management Systems and Embedded Systems with ARM coursework.
