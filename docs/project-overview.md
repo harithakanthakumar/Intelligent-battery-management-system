@@ -1,24 +1,60 @@
-# Project overview
 
-## Problem statement
-Add the problem statement exactly as approved for the project.
+# Project Overview
 
-## Objectives
-- Monitor battery parameters at cell and pack level, as supported by the hardware.
-- Acquire and process sensor readings using the STM32.
-- Implement the protection and control functions verified in the final firmware.
-- Transmit selected data to the ESP32 for remote visualization.
+## Project Title
 
-## System operation
-Describe the actual sampling, filtering, threshold checks, fault handling and communication sequence.
+Intelligent Battery Management System
 
-## Course mapping
+## Problem Statement
 
-### Battery Management Systems
-Explain the BMS concepts actually implemented: sensing, monitoring, protection, thermal management and balancing (if implemented).
+Battery-powered systems require continuous monitoring to maintain safe operating conditions and reliable performance. Variations in cell voltage, current, and temperature can affect battery operation and may lead to unsafe conditions if not detected.
 
-### Embedded Systems with ARM
-Explain the STM32F401RE peripheral configuration and register-level implementation actually used: GPIO, ADC, timers/PWM, UART and I2C (only include peripherals used).
+This project focuses on developing an embedded battery monitoring and protection system capable of acquiring battery parameters, identifying abnormal operating conditions, and communicating monitoring data remotely.
 
-## Current limitations
-List sensor simulation, missing features, measurement limitations and any hardware constraints.
+## Proposed Solution
+
+The proposed system uses an STM32F401RE microcontroller as the primary processing unit and an ESP32 for wireless communication.
+
+The STM32 collects sensor readings through its ADC peripheral, processes the measurements, performs fault checks, and controls external indicators and actuators. The ESP32 receives the processed data through UART and uploads it to ThingSpeak for remote monitoring.
+
+## Main Objectives
+
+1. Monitor individual cell voltages.
+2. Measure battery current and temperature.
+3. Detect abnormal operating conditions.
+4. Implement basic protection and alert mechanisms.
+5. Display battery parameters locally.
+6. Enable remote monitoring through IoT communication.
+
+## Controller Responsibilities
+
+### STM32F401RE
+
+- ADC configuration and data acquisition
+- Sensor interfacing
+- Voltage, current, and temperature monitoring
+- Fault detection
+- Fan and buzzer control
+- OLED communication through I2C
+- UART data transmission
+
+### ESP32
+
+- UART data reception
+- Wi-Fi connectivity
+- HTTP communication
+- ThingSpeak data upload
+
+## Development Focus
+
+The project emphasizes:
+- Bare-metal STM32 programming
+- Register-level peripheral configuration
+- Embedded C development
+- Sensor interfacing
+- Serial communication
+- IoT integration
+
+## Future Scope
+
+The system can be extended with battery State of Charge estimation, State of Health estimation, predictive cell imbalance detection, and battery lifecycle analysis.
