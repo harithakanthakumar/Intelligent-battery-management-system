@@ -26,7 +26,6 @@ The ESP32 receives battery telemetry from the STM32F401RE through UART and uploa
 ## Source Files
 
 - `main.cpp` – ESP32 Arduino firmware.
-- `secrets.example.h` – Example configuration file containing placeholder credentials.
 
 ## Development Environment
 
@@ -35,8 +34,3 @@ The ESP32 receives battery telemetry from the STM32F401RE through UART and uploa
 - Language: C++
 - Cloud Platform: ThingSpeak
 
-## Security
-
-Do not upload actual Wi-Fi passwords or ThingSpeak API keys to GitHub.
-
-Create a local `secrets.h` file containing your credentials and exclude it using `.gitignore`.
