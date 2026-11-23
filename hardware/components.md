@@ -1,14 +1,48 @@
-# Hardware components
 
-| Component | Quantity | Purpose | Status / notes |
-|---|---:|---|---|
-| STM32F401RE Nucleo | 1 | Main controller | Confirm exact board revision |
-| ESP32 development board | 1 | Wi-Fi / IoT communication | Specify exact module |
-| ACS712 | 1 | Current sensing | Confirm 5 A / 20 A / 30 A variant |
-| Cell-voltage sensor inputs | 2 | Cell voltage measurement | Record divider ratios and safe input range |
-| Potentiometer | As used | Simulated third-cell input, if retained | Label as simulation |
-| LM35 | As used | Temperature measurement | Record sensor count and calibration |
-| MOSFETs | As used | Switching / control | Add exact part numbers |
-| Fan and buzzer | As used | Thermal control / fault alert | Record ratings |
+# Hardware Components
 
-Update quantities, part numbers and status to match the final build. Do not connect battery cells until the sensing and protection circuit has been checked for safe voltage ranges and common-ground requirements.
+This document lists the major hardware components used in the Intelligent Battery Management System prototype.
+
+| Component | Quantity | Purpose |
+|---|---:|---|
+| STM32F401RE Nucleo | 1 | Main embedded controller |
+| ESP32 Development Board | 1 | Wi-Fi and IoT communication |
+| Cell voltage sensors | 2 | Measurement of two cell voltages |
+| Potentiometer | 1 | Simulation of the third cell voltage input |
+| ACS712 current sensor | 1 | Battery current measurement |
+| LM35 temperature sensor | As required | Temperature measurement |
+| OLED display | 1 | Local display of system parameters |
+| Cooling fan | 1 | Temperature-based cooling |
+| Buzzer | 1 | Fault indication |
+| MOSFET/driver circuitry | As required | Control of external loads |
+| Resistors and connecting wires | As required | Signal conditioning and connections |
+
+## Controller
+
+**STM32F401RE Nucleo**
+- Main processing unit
+- Performs ADC-based data acquisition
+- Controls monitoring and protection functions
+- Communicates with ESP32 through UART
+
+## IoT Module
+
+**ESP32**
+- Receives telemetry from STM32
+- Connects to a Wi-Fi network
+- Uploads monitoring data to ThingSpeak
+
+## Sensor Inputs
+
+- Voltage sensors measure two cell-voltage inputs.
+- A potentiometer simulates the third cell-voltage input.
+- ACS712 measures current.
+- LM35 provides temperature measurements.
+
+## Output Devices
+
+- OLED display for local monitoring
+- Cooling fan for temperature control
+- Buzzer for fault alerts
+
+**Note:** The potentiometer is used to simulate a sensor input during prototype testing. It is not an actual cell voltage measurement.
