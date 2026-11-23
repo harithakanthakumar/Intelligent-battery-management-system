@@ -1,13 +1,44 @@
-# STM32 BMS firmware
 
-Place the complete STM32CubeIDE project here, including source files, required headers, startup/system files and project configuration needed to build it.
+# STM32 BMS Firmware
 
-Document:
-- Exact STM32 part and board.
-- Clock configuration.
-- Toolchain and IDE version.
-- Whether the code uses CMSIS/register-level programming or HAL/LL.
-- Peripherals used and their pins.
-- Build and flash instructions.
+## Overview
 
-Do not upload generated build folders or compiled outputs unless there is a specific reason.
+This directory contains the firmware for the STM32F401RE microcontroller, which acts as the primary controller of the Intelligent Battery Management System.
+
+The firmware is developed using Embedded C and bare-metal register-level programming.
+
+## Main Functions
+
+- ADC initialization and sensor data acquisition
+- Cell voltage monitoring
+- Current and temperature monitoring
+- Fault detection
+- Fan control
+- Buzzer control
+- OLED display updates
+- UART communication with ESP32
+
+## Peripherals Used
+
+| Peripheral | Application |
+|---|---|
+| ADC | Analog sensor measurements |
+| USART1 | Telemetry transmission to ESP32 |
+| I2C1 | OLED communication |
+| GPIO | Control of external devices |
+| Timer/PWM | Actuator control, where configured |
+
+## Source File
+
+- `main.c` – Main STM32 firmware.
+
+## Development Environment
+
+- Microcontroller: STM32F401RE
+- Board: Nucleo-F401RE
+- Language: Embedded C
+- Programming approach: Bare-metal register-level programming
+
+## Notes
+
+Verify sensor scaling, ADC reference voltage, GPIO configuration, and actuator driver connections before hardware testing.
