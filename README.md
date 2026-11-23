@@ -140,6 +140,3 @@ Intelligent-battery-management-system/
 
 Embedded monitoring, protection, and IoT integration are the primary development areas. Features under development or proposed for future work will be documented separately from verified implementation results.
 
-## Team
-
-Developed as part of the Battery Management Systems and Embedded Systems with ARM coursework.
