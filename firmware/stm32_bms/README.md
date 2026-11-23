@@ -38,7 +38,3 @@ The firmware is developed using Embedded C and bare-metal register-level program
 - Board: Nucleo-F401RE
 - Language: Embedded C
 - Programming approach: Bare-metal register-level programming
-
-## Notes
-
-Verify sensor scaling, ADC reference voltage, GPIO configuration, and actuator driver connections before hardware testing.
