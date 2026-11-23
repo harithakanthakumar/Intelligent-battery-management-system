@@ -1,12 +1,42 @@
-# ESP32 IoT firmware
 
-Place the ESP32 source project here.
+# ESP32 IoT Firmware
 
-Document:
-- Exact ESP32 board.
-- Framework and version (Arduino core or ESP-IDF).
-- UART pins, baud rate and message format.
-- Wi-Fi setup method.
-- ThingSpeak channel fields and update interval.
+## Overview
 
-Keep Wi-Fi credentials and ThingSpeak write API keys in a local, ignored configuration file. Commit only a template such as `secrets.example.h` with placeholder values, never real credentials.
+This directory contains the ESP32 firmware responsible for wireless communication and cloud-based monitoring.
+
+The ESP32 receives battery telemetry from the STM32F401RE through UART and uploads the received information to the ThingSpeak IoT platform using Wi-Fi.
+
+## Main Functions
+
+- UART communication with STM32
+- Wi-Fi connection
+- Reception of battery telemetry
+- HTTP communication
+- ThingSpeak data upload
+
+## Communication
+
+| Interface | Purpose |
+|---|---|
+| UART2 | Receives telemetry from STM32 |
+| Wi-Fi | Connects to the network |
+| HTTP | Sends data to ThingSpeak |
+
+## Source Files
+
+- `main.cpp` – ESP32 Arduino firmware.
+- `secrets.example.h` – Example configuration file containing placeholder credentials.
+
+## Development Environment
+
+- Board: ESP32 Development Board
+- Framework: Arduino
+- Language: C++
+- Cloud Platform: ThingSpeak
+
+## Security
+
+Do not upload actual Wi-Fi passwords or ThingSpeak API keys to GitHub.
+
+Create a local `secrets.h` file containing your credentials and exclude it using `.gitignore`.
