@@ -2,9 +2,8 @@
 
 ## 1. System Wiring Diagram
 
-![STM32F401RE 3S Li-Ion BMS System Wiring Diagram](./hardware/wiring_diagram.png)
+![STM32F401RE 3S Li-Ion BMS System Wiring Diagram](./wiring_diagram.png)
 
-*(Ensure `wiring_diagram.png` is placed in the same directory as this `connections.md` file, or update the path above to match your repository structure.)*
 
 ---
 
